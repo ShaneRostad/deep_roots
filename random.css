@@ -1,0 +1,22 @@
+
+.wpb_column.vc_column_container.vc_col-sm-12 {
+	padding: 0px;
+}
+
+div.container {
+	width: 100%;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+div.product-detail-bg {
+	padding-left: 0px;
+	padding-right: 0px;
+	margin-left: 135px;
+	margin-right: 135px;
+}
+
+div#tab-description.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab.current {
+	padding-left: 135px;
+	padding-right: 135px;
+}
