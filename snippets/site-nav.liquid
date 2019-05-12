@@ -80,4 +80,39 @@
       </li>
     {% endif %}
   {% endfor %}
+
+  {% if shop.customer_accounts_enabled %}
+    <li {% if link.active %} class="site-nav--active"{% endif %}>
+      {% if customer %}
+        <a href="/account"
+          class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %}"
+          {% if link.current %} aria-current="page"{% endif %}
+        >
+          <span class="site-nav__label">Account</span>
+        </a>
+      {% else %}
+        <a href="/account/login"
+          class="site-nav__link site-nav__link--main{% if link.active %} site-nav__link--active{% endif %}"
+          {% if link.current %} aria-current="page"{% endif %}
+        >
+          <span class="site-nav__label">Account</span>
+        </a>
+        {% endif %}
+      </li>
+  {% endif %}
+
+  <li>
+    <a href="/cart" class="site-header__icon site-header__cart">
+      {% include 'icon-cart' %}
+      <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
+      {% if cart.item_count > 0 %}
+        <div id="CartCount" class="site-header__cart-count">
+          <span>{{ cart.item_count }}</span>
+          <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
+        </div>
+      {% endif %}
+    </a>
+  </li>
+
+
 </ul>

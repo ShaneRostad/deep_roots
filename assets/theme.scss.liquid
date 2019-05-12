@@ -412,7 +412,7 @@ $color-pinterest: #cb2027;
 
 /*================ Sizing Variables ================*/
 $width-site: 1200px;
-$gutter-site: 55px;
+$gutter-site: 45px;
 $gutter-site-mobile: 22px;
 $section-spacing: 55px;
 $section-spacing-small: 35px;
@@ -1172,6 +1172,43 @@ $grid-breakpoints: (
   }
 }
 
+/*================ Padding helper classses =================*/
+
+.padding-top--max {
+  @include media-query($small) {
+    padding-top: 60px;
+  }
+
+  @include media-query($medium-up) {
+    padding-top:60px;
+  }
+
+  @include media-query($large-up) {
+    padding-top: 150px;
+  }
+}
+
+.padding-top--large {
+  padding-top: 120px;
+}
+
+.padding-top--med {
+  padding-top: 60px;
+}
+
+.padding-right--med {
+  padding-right: 60px;
+}
+
+.padding-top--small {
+  padding-top: 30px;
+}
+
+.padding-right--small {
+  padding-right: 15px;
+}
+
+
 /*================ #Helper Classes ================*/
 .clearfix {
   @include clearfix();
@@ -1382,41 +1419,40 @@ h6 {
 }
 
 h1 {
-  font-size: em(floor($font-size-header * 1.35));
+  font-size: em(floor($font-size-base * 3.375));
   text-transform: none;
   letter-spacing: 0;
+  line-height: 1;
 
   @include media-query($small) {
-    font-size: em(floor($font-size-header * 1.25));
+    font-size: em(floor($font-size-base * 2.25));
   }
 }
 
 h2 {
-  font-size: em(floor($font-size-header * 0.78));
-  text-transform: uppercase;
+  font-size: em(floor($font-size-base * 2.8125));
+  text-transform: none;
   letter-spacing: 0.1em;
 
   @include media-query($small) {
-    font-size: em(floor(($font-size-header * 0.78) * 0.9));
+    font-size: em(floor($font-size-base * 2.25));
   }
 }
 
 h3 {
-  font-size: em($font-size-header);
+  font-size: em(floor($font-size-base * 1.875));
   text-transform: none;
   letter-spacing: 0;
 
   @include media-query($small) {
-    font-size: em(floor($font-size-header * 0.78));
+    font-size: em(floor($font-size-base * 1.5));
   }
 }
 
 h4 {
-  font-size: em(floor($font-size-header * 0.68));
-
-  @include media-query($small) {
-    font-size: em(floor(($font-size-header * 0.68) * 0.9));
-  }
+  text-transform: none;
+  line-height: 1.5;
+  font-size: em(floor($font-size-base));
 }
 
 h5 {
@@ -1541,26 +1577,26 @@ li {
 }
 
 /*================ Hero and slideshow headers ================*/
-.mega-title,
-.mega-subtitle {
-  color: $color-overlay-title-text;
-  .hero & {
-    text-shadow: 0 0 4px $color-text-shadow;
-  }
-  @include media-query($medium-up) {
-    text-shadow: 0 0 4px $color-text-shadow;
-  }
-}
+// .mega-title,
+// .mega-subtitle {
+//   color: $color-overlay-title-text;
+//   .hero & {
+//     text-shadow: 0 0 4px $color-text-shadow;
+//   }
+//   @include media-query($medium-up) {
+//     text-shadow: 0 0 4px $color-text-shadow;
+//   }
+// }
 
 .mega-title {
   margin-bottom: 8px;
 }
 
 .mega-title--large {
-  font-size: em($font-size-header + 8);
+  font-size: em($font-size-base + 8);
 
   @include media-query($medium-up) {
-    font-size: em(floor($font-size-header * 2.5));
+    font-size: em(floor($font-size-base * 2.5));
   }
 }
 
@@ -2447,7 +2483,7 @@ textarea {
 .site-nav {
   position: relative;
   padding: 0;
-  text-align: center;
+  text-align: right;
   margin: 25px 0;
 
   a {
@@ -3176,6 +3212,21 @@ $color-blankstate-background: rgba($color-body-text, 0.1);
     border: 0;
   }
 }
+
+.gradient-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  @include gradient(bottom, white, #F7F8FF);
+
+  .icon {
+    border: 0;
+  }
+}
+
 
 // Custom styles for some blank state images
 .image-bar__content .placeholder-svg {
@@ -5941,6 +5992,10 @@ $toolbar-height-small: 46px;
   }
 }
 
+.hero-fixed-width__alternate-image {
+  max-height: 100vh;
+}
+
 .hero--adapt,
 .hero-fixed-width__image {
   max-height: 100vh;
@@ -5984,7 +6039,7 @@ $toolbar-height-small: 46px;
   }
 
   .hero--large {
-    height: 650px;
+    height: 692px;
   }
 
   .hero--x-large {
@@ -5998,10 +6053,19 @@ $toolbar-height-small: 46px;
 
 .hero__inner {
   position: relative;
-  display: table-cell;
+  @include display-flexbox;
+  @include align-items(flex-start);
   vertical-align: middle;
-  padding: $section-spacing 0;
+  padding: $section-spacing 55px;
   z-index: 2;
+
+  @include media-query($small) {
+    padding: $section-spacing 30px;
+  }
+}
+
+.pointer-arrow {
+
 }
 
 .hero__btn {
@@ -6023,6 +6087,7 @@ $toolbar-height-small: 46px;
   @include transform(translateY(-50%));
 }
 
+.hero-fixed-width__alternate-image,
 .hero-fixed-width__image {
   width: 100%;
   height: 100%;
@@ -6798,6 +6863,85 @@ $transition-controls-video: color 0.2s $ease-transition, background-color 0.2s $
   }
 }
 
+/*================ CTA Cards ================*/
+
+.cta__card {
+  background-color: white;
+  border-radius: 3px;
+
+  -webkit-box-shadow: 0 -6px 16px -6px rgba(0, 0, 0, .03);
+          box-shadow: 0 -6px 16px -6px rgba(0, 0, 0, .03);
+  -webkit-box-shadow: 0 8px 16px -8px rgba(0, 0, 0, .2);
+          box-shadow: 0 8px 16px -8px rgba(0, 0, 0, .2);
+  -webkit-box-shadow: 0 13px 27px -5px rgba(45, 49, 92, .15);
+          box-shadow: 0 13px 27px -5px rgba(45, 49, 92, .15);
+  margin: 0 auto;
+}
+
+.overlap-section-above {
+  margin-top: -90px;
+
+  @include media-query($medium-up) {
+    margin-top: -120px;
+  }
+}
+
+.cta__card-top {
+  @include display-flexbox;
+  margin-bottom: 45px;
+  position: relative;
+  padding: 35px 45px 40px 45px;
+
+  @include media-query($small) {
+    @include flex-wrap(wrap);
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.cta__card-title {
+  overflow-wrap: normal;
+  margin-right: 30px;
+}
+
+.cta__card-bottom {
+  @include display-flexbox;
+  @include align-items(center);
+  position: absolute;
+  bottom: 0;
+  padding: 0 45px;
+  height: 40px;
+  border-radius: 0 0 3px 3px;
+  cursor: pointer;
+
+  @include media-query($small) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+
+.cta__card-background {
+  position: absolute;
+  height: 5px;
+  width:100%;
+  bottom: 0;
+  border-radius: 0 0 3px 3px;
+  transition: height .5s;
+
+  @include media-query($small) {
+    height: 40px;
+    cursor: pointer;
+  }
+}
+
+.cta__card:hover .cta__card-background {
+  height: 40px;
+  cursor: pointer;
+}
+
+
+
 /*================ Video styles ================*/
 .video {
   display: none;
@@ -7094,4 +7238,3 @@ $transition-controls-video: color 0.2s $ease-transition, background-color 0.2s $
     opacity: 1;
   }
 }
-

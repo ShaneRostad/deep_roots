@@ -54,17 +54,17 @@
                     object-position: {{ section.settings.alignment }};"
              alt="{{ section.settings.image.alt | escape }}">
       {%- else -%}
-        <span>
-          {% capture current %}{% cycle 1, 2 %}{% endcapture %}
-          {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
-        </span>
+          <span>
+            {% capture current %}{% cycle 1, 2 %}{% endcapture %}
+            {{ 'lifestyle-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+          </span>
       {%- endif -%}
       <noscript>
         <div class="hero-fixed-width__image"{% if section.settings.image %} style="background-image: url('{{ section.settings.image | img_url: '2048x' }}'); background-position: center {{ section.settings.alignment }};"{% endif %}></div>
       </noscript>
     </div>
   {%- else -%}
-    <div class="hero hero--{{ section.settings.hero_size }} hero-{{ section.id }}{% if section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %} box ratio-container lazyload js"
+    <div class="hero hero--{{ section.settings.hero_size }} hero-{{ section.id }}{% if section.settings.gradient-background != true and section.settings.title != blank or section.settings.text != blank or section.settings.button_label != blank %} hero__overlay{% endif %} box {% if section.settings.gradient-background != true %} ratio-container {% else %}gradient-background{% endif %} lazyload js"
          id="Hero-{{ section.id }}"
          data-layout="{{ section.settings.hero_layout }}"
          {%- if section.settings.image -%}
@@ -73,24 +73,39 @@
          data-parent-fit="cover"
          style="background-position: {{ section.settings.alignment }}; background-image: url('{{ section.settings.image | img_url: '300x300' }});"
          {%- endif -%}>
-    {%- if section.settings.image == blank -%}
+    {%- if section.settings.image == blank and section.settiings.gradient-background == false -%}
       <div class="placeholder-background">
         {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
       </div>
     {%- endif -%}
-      <div class="hero__inner">
-        <div class="page-width text-center">
+      <div class="hero__inner {% if section.settings.gradient-background == true%}page-width{% endif %}">
+        <div class="medium-up--one-half small--one-whole padding-top--max padding-right--small">
           {%- if section.settings.title != blank -%}
-            <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
+            <h1 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
           {%- endif -%}
           {%- if section.settings.text != blank -%}
-            <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">{{ section.settings.text }}</div>
+            <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %} padding-top--small">{{ section.settings.text }}</div>
           {%- endif -%}
           {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
             <a href="{{ section.settings.button_link }}" class="btn hero__btn">
               {{ section.settings.button_label | escape }}
             </a>
           {%- endif -%}
+          <img class="pointer-arrow" src="{{ 'hero-arrow.svg' | asset_url }}" alt="pointer arrow" style="padding-left: 16px; margin-top: 12px;">
+        </div>
+        <div class="medium-up--one-half small--hide">
+          <img class="hero-fixed-width__alternate-image lazypreload"
+               src="{{ section.settings.alternate_image | img_url: '472x617' }}"
+               data-src="{{ img_url }}"
+               data-widths="[180, 360, 470, 600, 770, 970, 1060, 1280, 1512, 1728, 2048]"
+               data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+               data-sizes="auto"
+               style="{%- if slide_width <= max_width -%}
+                        {%- assign min_width = slide_width | times: 100 | divided_by: max_width -%}
+                        min-width: {{ min_width }}%;
+                      {%- endif -%}
+                      object-position: {{ section.settings.alignment }};"
+               alt="{{ section.settings.image.alt | escape }}">
         </div>
       </div>
     </div>
@@ -120,6 +135,11 @@
   "class": "index-section index-section--flush",
   "settings": [
     {
+      "type": "checkbox",
+      "id": "gradient-background",
+      "label": "Use Gradient Background?"
+    },
+    {
       "type": "image_picker",
       "id": "image",
       "label": {
@@ -134,6 +154,11 @@
         "zh-CN": "图片",
         "zh-TW": "圖片"
       }
+    },
+    {
+      "type": "image_picker",
+      "id": "alternate_image",
+      "label": "Featured Image With Text"
     },
     {
       "type": "select",

@@ -1,0 +1,75 @@
+<div class="page-width">
+  <div class="grid" style="margin: 0;">
+    {% if section.settings.overlap == true %}
+    <div class="cta__card grid__item medium-up--two-thirds medium-up--push-one-sixth small--ten-twelfths small--push-one-twelfth overlap-section-above" style="padding: 0;">
+    {% else %}
+    <div class="cta__card grid__item medium-up--two-thirds medium-up--push-one-sixth small--ten-twelfths small--push-one-twelfth" style="padding: 0;">
+    {% endif %}
+      <div class="cta__card-top">
+        <div class="medium-up--one-sixth cta__card-title">
+          <h2 class="h4" style="overflow-wrap: normal;">{{ section.settings.section_title | escape }}</h2>
+        </div>
+        <div class="medium-up--eight-twelfths">
+          {{ section.settings.text }}
+        </div>
+      </div>
+      <div class="cta__card-background" style="background-color: {{ section.settings.section-color }};">
+      </div>
+      <a href="{{ section.settings.link }}">
+        <div class="cta__card-bottom">
+          <div class="five-sixths">
+            <p style="font-size: 16px; line-height: 20px">Shop {{ section.settings.section_title | escape }}</p>
+          </div>
+          <div class="one-sixth small--text-right medium-up--text-center">
+            <img class="small-arrow" src="{{ 'small-arrow.svg' | asset_url }}" alt="go to {{ section.settings.section_title }}">
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Call-Out Card",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "overlap",
+      "label": "overlap sections above"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Heading",
+      "default": "Talk about your brand"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link to Page"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+    },
+    {
+      "type": "color",
+      "id": "section-color",
+      "label": "Section Color",
+      "default": "#E8E8FC"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Card",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
