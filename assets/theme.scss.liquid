@@ -411,7 +411,7 @@ $color-twitter: #00aced;
 $color-pinterest: #cb2027;
 
 /*================ Sizing Variables ================*/
-$width-site: 1200px;
+$width-site: 1280px;
 $gutter-site: 45px;
 $gutter-site-mobile: 22px;
 $section-spacing: 55px;
@@ -982,6 +982,9 @@ $grid-breakpoints: (
   }
 }
 
+
+
+
 /*============================================================================
   Reversed grids allow you to structure your source in the opposite
   order to how your rendered layout will appear.
@@ -1430,9 +1433,9 @@ h1 {
 }
 
 h2 {
-  font-size: em(floor($font-size-base * 2.8125));
+  font-size: em(floor($font-size-base * 2.25));
   text-transform: none;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 
   @include media-query($small) {
     font-size: em(floor($font-size-base * 2.25));
@@ -1451,15 +1454,16 @@ h3 {
 
 h4 {
   text-transform: none;
-  line-height: 1.5;
-  font-size: em(floor($font-size-base));
+  line-height: 1.2;
+  font-size: em(floor($font-size-base * 1.25));
+  margin-bottom: 6px;
 }
 
 h5 {
-  font-size: em(floor($font-size-header * 0.58));
+  font-size: em(floor($font-size-header * 1));
 
   @include media-query($small) {
-    font-size: em(floor(($font-size-header * 0.58) * 0.9));
+    font-size: em(floor($font-size-header * 1));
   }
 }
 
@@ -5912,6 +5916,7 @@ $toolbar-height-small: 46px;
     }
   }
 }
+/*================ Regular feature row ================*/
 
 .feature-row {
   @include display-flexbox();
@@ -5979,6 +5984,82 @@ $toolbar-height-small: 46px;
     font-size: em($font-size-base + 2);
   }
 }
+
+/*================ Custom feature row ================*/
+
+.custom-feature-row {
+  height: 100vh;
+  @include display-flexbox;
+  @include align-items(center);
+
+  @include media-query($small) {
+    @include flex-direction(column);
+  }
+}
+
+.custom-feature-row__background {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-image: url({{ 'our-products-background.jpg' | asset_url }});
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-attachment: initial;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    &:before {
+      content: "";
+      display: block;
+      padding-top: 54%;
+    }
+}
+
+.custom-feature-row__item {
+  @include media-query($small) {
+    @include flex(1 1 auto);
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.custom-feature-row__item__image {
+  @include flex(0 1 42%);
+
+  @include media-query($small) {
+    @include flex(1 1 auto);
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.custom-feature-row__image {
+  width: 582px;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.custom-feature-row__benefits {
+  @include display-flexbox;
+  @include align-items(flex-start);
+}
+
+.custom-feature-row__benefit {
+  @include flex(0 1 50%);
+  min-width: 270px;
+  padding-right: 30px;
+  margin-bottom: 30px;
+}
+
+
+
+
+
+
+/*================ Hero ================*/
 
 .hero {
   position: relative;
