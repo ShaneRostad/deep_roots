@@ -28,7 +28,7 @@
       <div class="hero-fixed-width__content">
         <div class="page-width text-center">
           {%- if section.settings.title != blank -%}
-            <h2 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
+            <h1 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h1>
           {%- endif -%}
           {%- if section.settings.text != blank -%}
             <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %}">{{ section.settings.text }}</div>
@@ -81,7 +81,7 @@
       <div class="hero__inner {% if section.settings.gradient-background == true%}page-width{% endif %}">
         <div class="medium-up--one-half small--one-whole padding-top--max padding-right--small">
           {%- if section.settings.title != blank -%}
-            <h1 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h2>
+            <h1 class="h1 mega-title{% if section.settings.text_size == 'large' %} mega-title--large{% endif %}">{{ section.settings.title | escape }}</h1>
           {%- endif -%}
           {%- if section.settings.text != blank -%}
             <div class="rte-setting mega-subtitle{% if section.settings.text_size == 'large' %} mega-subtitle--large{% endif %} padding-top--small">{{ section.settings.text }}</div>
