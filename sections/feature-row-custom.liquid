@@ -1,9 +1,22 @@
-  {% style %}
+{% style %}
+
+  #shopify-section-{{ section.id }} {
+    padding: 0;
+    background: -moz-linear-gradient(top, #e8e8fc, #f7f7fc);
+    background: -webkit-linear-gradient(top, #e8e8fc, #f7f7fc);
+    background: linear-gradient(to bottom, #e8e8fc, #f7f7fc);
+  }
+
+  @media (min-width: 750px) {
     #shopify-section-{{ section.id }} {
       padding: 0;
-      background-color: #F7F7FC;
+      background: -moz-linear-gradient(top, #e8e8fc 50%, #f7f7fc 54%);
+      background: -webkit-linear-gradient(top, #e8e8fc 50%,#f7f7fc 54%);
+      background: linear-gradient(to bottom, #e8e8fc 50%,#f7f7fc 54%);
     }
-  {% endstyle %}
+  }
+
+{% endstyle %}
 
   {% capture image_layout %}
     <div class="custom-feature-row__item__image" style="margin-left: -5%">
@@ -39,7 +52,7 @@
       {{ image_layout }}
     {% endif %} -->
 
-    <div class="custom-feature-row__item grid__item medium-up--one-half medium-up--push-five-twelfths">
+    <div class="custom-feature-row__item grid__item medium-up--three-quarters medium-up--push-one-quarter large-up--one-half large-up--push-five-twelfths">
       {% if section.settings.title != blank %}
         <h2 class="h2" style="margin-bottom:45px;">{{ section.settings.title | escape }}</h2>
       {% endif %}
@@ -60,7 +73,7 @@
           <p>Every Batch of Deep Roots CBD is quality tested in a 3rd party lab before it available for purchase.</p>
         </div>
         <div class="custom-feature-row__benefit">
-          <h4>Developed with Physicians</h4>
+          <h4>Refined with Physicians</h4>
           <p>We give away our products to physician’s patients to gather valuable feedback and ensure they are truly effective before ever selling them.</p>
         </div>
       </div>

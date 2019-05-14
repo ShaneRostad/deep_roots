@@ -329,8 +329,8 @@ $widescreen: 'widescreen';
     - Default column widths: $grid-breakpoint-has-widths: ($small, $medium-up);
     - Default is no push classes
 ==============================================================================*/
-$grid-breakpoint-has-widths: ($small, $medium-up);
-$grid-breakpoint-has-push: ($small, $medium-up);
+$grid-breakpoint-has-widths: ($small, $medium-up, $large-up);
+$grid-breakpoint-has-push: ($small, $medium-up, $large-up);
 
 /*================ Color Variables ================*/
 
@@ -1435,10 +1435,10 @@ h1 {
 h2 {
   font-size: em(floor($font-size-base * 2.25));
   text-transform: none;
-  letter-spacing: 0.05em;
+  letter-spacing: 0;
 
   @include media-query($small) {
-    font-size: em(floor($font-size-base * 2.25));
+    font-size: em(floor($font-size-base * 1.875));
   }
 }
 
@@ -1549,7 +1549,7 @@ p {
   margin: 0 0 ($section-spacing-small / 1.8);
 
   @include media-query($small) {
-    font-size: em($font-size-base - 1);
+    font-size: em($font-size-base - 2);
   }
 
   &:last-child {
@@ -5988,12 +5988,22 @@ $toolbar-height-small: 46px;
 /*================ Custom feature row ================*/
 
 .custom-feature-row {
-  height: 100vh;
+  height: auto;
   @include display-flexbox;
   @include align-items(center);
 
   @include media-query($small) {
-    @include flex-direction(column);
+    padding: 45px 10%;
+    margin: 0;
+  }
+
+  @include media-query($medium-up) {
+    height: 90vh;
+  }
+
+  @include media-query($large-up) {
+    height: 100vh;
+    padding-right:5vw;
   }
 }
 
@@ -6001,7 +6011,6 @@ $toolbar-height-small: 46px;
     position: absolute;
     left: 0;
     right: 0;
-    background-image: url({{ 'our-products-background.jpg' | asset_url }});
     background-repeat: no-repeat;
     background-position: 0;
     background-attachment: initial;
@@ -6015,6 +6024,28 @@ $toolbar-height-small: 46px;
       display: block;
       padding-top: 54%;
     }
+
+    @include media-query($medium-up) {
+      background-image: url({{ 'product-background-medium.jpg' | asset_url }});
+      left: -33px;
+
+      &:before {
+        content: "";
+        display: block;
+        padding-top: 60%;
+      }
+
+    }
+
+    @include media-query($large-up) {
+      background-image: url({{ 'our-products-background.jpg' | asset_url }});
+
+      &:before {
+        content: "";
+        display: block;
+        padding-top: 54%;
+      }
+    }
 }
 
 .custom-feature-row__item {
@@ -6022,6 +6053,7 @@ $toolbar-height-small: 46px;
     @include flex(1 1 auto);
     width: 100%;
     max-width: 100%;
+    padding-left: 0;
   }
 }
 
@@ -6044,14 +6076,23 @@ $toolbar-height-small: 46px;
 
 .custom-feature-row__benefits {
   @include display-flexbox;
+  @include flex-direction(column);
   @include align-items(flex-start);
+
+  @include media-query($medium-up) {
+    @include flex-direction(row);
+  }
 }
 
 .custom-feature-row__benefit {
   @include flex(0 1 50%);
   min-width: 270px;
-  padding-right: 30px;
+  margin-right: 30px;
   margin-bottom: 30px;
+
+  &:nth-child(2) {
+    margin-right: 0px;
+  }
 }
 
 
