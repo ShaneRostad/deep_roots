@@ -416,7 +416,7 @@ $gutter-site: 45px;
 $gutter-site-mobile: 22px;
 $section-spacing: 55px;
 $section-spacing-small: 35px;
-$border-radius: 2px;
+$border-radius: 3px;
 
 /*================ Footer Variables ================*/
 $footer-spacing-extra-small: 5px;
@@ -1821,6 +1821,10 @@ a[href^="tel"] {
 .btn {
   @include user-select();
   @include prefix(appearance, none, webkit moz spec);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+          box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 96, .11);
+          box-shadow: 0 4px 6px rgba(50, 50, 96, .11);
   display: inline-block;
   width: auto;
   text-decoration: none;
@@ -1832,13 +1836,13 @@ a[href^="tel"] {
   padding: $input-padding-top-bottom-small $input-padding-left-right-small;
   background-color: $color-btn-primary;
   color: $color-btn-primary-text;
-  font-family: $font-stack-header;
+  font-family: $font-stack-body;
   font-style: $font-style-header;
   font-weight: $font-weight-header;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.15em;
   white-space: normal;
-  font-size: $font-size-base - 2;
+  font-size: $font-size-base - 4;
 
   @include media-query($medium-up) {
     padding: $input-padding-top-bottom $input-padding-left-right;
@@ -5966,6 +5970,7 @@ $toolbar-height-small: 46px;
   @include media-query($small) {
     order: 2;
     padding-bottom: 0; // always last element on mobile
+    max-width: 484px;
   }
 }
 
@@ -5981,7 +5986,7 @@ $toolbar-height-small: 46px;
 
 @include media-query($medium-up) {
   .featured-row__subtext {
-    font-size: em($font-size-base + 2);
+    font-size: em($font-size-base);
   }
 }
 
@@ -6095,6 +6100,18 @@ $toolbar-height-small: 46px;
   }
 }
 
+/* ============== Free Trial Row ===================*/
+.free-trial-image {
+  @include media-query($small) {
+    display: none;
+  }
+}
+
+
+
+
+
+
 /*================ Judge Me Reviews ================*/
 
 .jdgm-all-reviews-rating-wrapper { display: none !important; }
@@ -6115,8 +6132,8 @@ $toolbar-height-small: 46px;
 }
 
 .jdgm-carousel-item__review-body {
-  max-width: 650px;
-  margin: 15px auto 30px auto !important;
+  // max-width: 650px;
+  // margin: 15px auto 30px auto !important;
 }
 
 .jdgm-carousel-item__product-title {

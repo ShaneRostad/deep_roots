@@ -1,6 +1,28 @@
+{% style %}
+  #shopify-section-{{ section.id }} {
+    background-image: url({{ 'cbd-trial-background-2.jpg' | asset_url }});
+    background-repeat: no-repeat;
+    background-position: 0;
+    background-attachment: initial;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    padding: 110px 0;
+  }
+
+  @media only screen and (max-width: 750px) {
+    #shopify-section-{{ section.id }} {
+      background-position: center right;
+    }
+  }
+
+{% endstyle %}
+
+
 <div class="page-width feature-row">
   {% capture image_layout %}
-    <div class="feature-row__item">
+    <div class="feature-row__item free-trial-image">
       {% if section.settings.image != blank %}
         {% capture img_id %}FeatureRowImage-{{ section.id }}{% endcapture %}
         {% capture wrapper_id %}FeatureRowImageWrapper-{{ section.id }}{% endcapture %}
@@ -35,7 +57,7 @@
 
     <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }}">
       {% if section.settings.title != blank %}
-        <h2 class="h3">{{ section.settings.title | escape }}</h2>
+        <h2 class="h2">{{ section.settings.title | escape }}</h2>
       {% endif %}
       {% if section.settings.text != blank %}
         <div class="rte rte-setting featured-row__subtext">{{ section.settings.text }}</div>
