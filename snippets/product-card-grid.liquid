@@ -30,6 +30,10 @@
   </noscript>
 
   <div class="h4 grid-view-item__title product-card__title" aria-hidden="true">{{ product.title }}</div>
+{% comment %}Start automatically added Judge.me widget{% endcomment %}
+  {% include 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true %}
+{% comment %}End automatically added Judge.me widget{% endcomment %}
+
 
   {% include 'product-price', variant: product %}
 
