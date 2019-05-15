@@ -6107,11 +6107,6 @@ $toolbar-height-small: 46px;
   }
 }
 
-
-
-
-
-
 /*================ Judge Me Reviews ================*/
 
 .jdgm-all-reviews-rating-wrapper { display: none !important; }
@@ -6139,6 +6134,75 @@ $toolbar-height-small: 46px;
 .jdgm-carousel-item__product-title {
   font-size: 80%;
 }
+
+
+/*================ Newsletter Section ================*/
+
+.newsletter-section {
+  padding-top: 90px;
+  padding-bottom: 90px;
+
+  .form-single-field {
+    margin: 0 auto;
+    max-width: 425px;
+
+    .input--error {
+      margin-bottom: 0;
+    }
+  }
+
+  input {
+    border: none;
+  }
+
+  .input-group {
+    @include flex-wrap(nowrap);
+    -webkit-box-shadow: 0 2px 5px -1px rgba(50, 50, 50, .25);
+            box-shadow: 0 2px 5px -1px rgba(50, 50, 50, .25);
+    -webkit-box-shadow: 0 1px 3px -1px rgba(0, 0, 0, .3);
+            box-shadow: 0 1px 3px -1px rgba(0, 0, 0, .3);
+    border-radius: 3px 3px 3px 3px;
+  }
+
+
+  .input-group__field {
+    @include flex-basis(15rem);
+    flex-grow: 9999;
+    margin-bottom: 0;
+    border-radius: $border-radius 0 0 $border-radius;
+    text-align: left;
+
+    input {
+      width: 100%;
+    }
+
+    .form-vertical & {
+      margin: 0;
+    }
+  }
+}
+
+.newsletter-section__header {
+
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-left: auto;
+  max-width: 60%;
+
+  p {
+    max-width: 392px;
+    margin: 0 auto;
+  }
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+}
+
+
+
+
 
 
 /*================ Hero ================*/
@@ -6812,10 +6876,6 @@ $toolbar-height-small: 46px;
 .align--bottom-right {
   @include align-self(flex-end);
   text-align: right;
-}
-
-.newsletter-section {
-  padding-top: $section-spacing;
 }
 
 .index-section--newsletter-background {
